@@ -1,9 +1,7 @@
 library(readr)
 
-file.choose()
 
-ruta_csv <- "C:\\Users\\ferna\\Desktop\\ProyectoE\\Dataset.csv"
 
-read.csv(ruta_csv)
+read.csv("https://raw.githubusercontent.com/JuanferCalle/ProyectoFinalE/main/Dataset.csv")
 
 
