@@ -24,4 +24,4 @@ columnas_con_faltantes <- names(valores_faltantes[valores_faltantes > 0])
 # Mostramos las columnas con valores faltantes
 print(columnas_con_faltantes)
 
-
+  
