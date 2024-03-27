@@ -57,11 +57,21 @@ barplot(table(job_category),
 # Crear el diagrama de torta
 # Crear el diagrama de torta
 # Crear el diagrama de torta sin las etiquetas de las categorías de trabajo
+# Crear el diagrama de torta sin las etiquetas de las categorías de trabajo
+# Crear el diagrama de torta sin las etiquetas de las categorías de trabajo
+# Crear el diagrama de torta sin las etiquetas de las categorías de trabajo
 pie(table(job_title),
     main = "Frecuencia de Títulos de Trabajo",
     col = rainbow(length(table(job_title))),  # Colores del arco iris para cada sector
-    cex = 0.0)  # Tamaño del texto
+    labels = NA)  # No mostrar etiquetas dentro del gráfico de torta
 
-# Crear solo los recuadros de la leyenda con los nombres de las categorías de trabajo
-legend("right", inset = c(1, 0.5), legend = names(table(job_title)),
-       fill = rainbow(length(table(job_title))), bty = "n", cex = 0.5)
+# Obtener los colores del arco iris
+colores <- rainbow(length(table(job_title)))
+
+# Crear recuadros para las categorías de trabajo
+for (i in 1:length(table(job_title))) {
+  rect(xleft = 1.2, ybottom = 1.1 - i * 0.1, xright = 1.3, ytop = 1.0 - i * 0.1, col = colores[i])
+  text(1.35, 1.05 - i * 0.1, names(table(job_title))[i], pos = 4, cex = 0.8)
+}
+
+
