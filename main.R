@@ -55,10 +55,6 @@ barplot(table(job_category),
         col = colores,
         las = 2)  # Rotar etiquetas en el eje x si es necesario
 # Crear el diagrama de torta
-# Crear el diagrama de torta
-# Crear el diagrama de torta sin las etiquetas de las categorías de trabajo
-# Crear el diagrama de torta sin las etiquetas de las categorías de trabajo
-# Crear el diagrama de torta sin las etiquetas de las categorías de trabajo
 # Crear el diagrama de torta sin las etiquetas de las categorías de trabajo
 pie(table(job_title),
     main = "Frecuencia de Títulos de Trabajo",
@@ -74,4 +70,33 @@ for (i in 1:length(table(job_title))) {
   text(1.35, 1.05 - i * 0.1, names(table(job_title))[i], pos = 4, cex = 0.8)
 }
 
+salario_data_engineering <- subset(datos_filtrados, job_category == "Data Engineering")
+salario_Architecture_and_Modeling <- subset(datos_filtrados, job_category == "Data Architecture and Modeling")
+salarioData_Science_and_Research <- subset(datos_filtrados, job_category == "Data Science and Research")
+salarioBI_and_Visualization <- subset(datos_filtrados, job_category == "BI and Visualization")
+salario_Data_Quality_and_Operations <- subset(datos_filtrados, job_category == " Data Quality and Operations")
+salarioMachine_Learning_and_AI <- subset(datos_filtrados, job_category == "Machine Learning and AI")
+salarioCloud_and_Database  <- subset(datos_filtrados, job_category == "Cloud and Database ")
+salario_Data_Analysis  <- subset(datos_filtrados, job_category == "Data Analysis ")
+salario_Data_Management_and_Strategy  <- subset(datos_filtrados, job_category == "Data Management and Strategy ")
+salario_Leadership_and_Management  <- subset(datos_filtrados, job_category == "Leadership and Management ")
+
+
+
+print(salario_data_engineering)
+print(salarioCloud_and_Database)
+
+library(ggplot2)
+
+# Crear diagramas de cajas y alambres para cada categoría de trabajo y su salario correspondiente
+p1 <- ggplot(data = datos_filtrados, aes(x = job_category, y = salary_in_usd)) +
+  geom_boxplot(fill = "skyblue", color = "black") +
+  labs(title = "Salarios por Categoría de Trabajo",
+       x = "Categoría de Trabajo",
+       y = "Salario en USD") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))  # Rotar etiquetas del eje x si es necesario
+
+# Mostrar los diagramas de cajas y alambres
+print(p1)
 
