@@ -27,7 +27,10 @@ columnas_con_faltantes <- names(valores_faltantes[valores_faltantes > 0])
 # Mostramos las columnas con valores faltantes
 print(columnas_con_faltantes)
 
-print(datos_filtrados)  
+print(datos_filtrados) 
+
+attach(datos_filtrados)
+names(datos_filtrados)
 
 # Contar la frecuencia de cada tipo de empleo
 frecuencia_empleos <- table(datos_filtrados$job_tittle)
@@ -39,7 +42,6 @@ print(cantidad_datos)
 # Contar la frecuencia de cada tipo de empleo
 frecuencia_empleos <- table(datos_filtrados$job_tittle)
 
-attach(datos_filtrados)
 
 table(job_title)
 table(job_category)
@@ -70,6 +72,7 @@ for (i in 1:length(table(job_title))) {
   text(1.35, 1.05 - i * 0.1, names(table(job_title))[i], pos = 4, cex = 0.8)
 }
 
+###Las tablas por job_category
 salario_data_engineering <- subset(datos_filtrados, job_category == "Data Engineering")
 salario_Architecture_and_Modeling <- subset(datos_filtrados, job_category == "Data Architecture and Modeling")
 salarioData_Science_and_Research <- subset(datos_filtrados, job_category == "Data Science and Research")
@@ -85,8 +88,8 @@ salario_Leadership_and_Management  <- subset(datos_filtrados, job_category == "L
 
 print(salario_data_engineering)
 print(salarioCloud_and_Database)
+print(salario_Architecture_and_Modeling)
 
-library(ggplot2)
 
 # Crear diagramas de cajas y alambres para cada categoría de trabajo y su salario correspondiente
 p1 <- ggplot(data = datos_filtrados, aes(x = job_category, y = salary_in_usd)) +
@@ -100,3 +103,41 @@ p1 <- ggplot(data = datos_filtrados, aes(x = job_category, y = salary_in_usd)) +
 # Mostrar los diagramas de cajas y alambres
 print(p1)
 
+
+
+
+# Diagrama de dispersión
+grafica_dispersion1 = ggplot(salario_data_engineering, aes(salary_in_usd, job_category))
+grafica_dispersion2 = ggplot(salario_Architecture_and_Modeling, aes(salary_in_usd, job_category))
+grafica_dispersion3 = ggplot(salarioData_Science_and_Research, aes(salary_in_usd, job_category))
+grafica_dispersion4 = ggplot(salarioBI_and_Visualization, aes(salary_in_usd, job_category))
+grafica_dispersion5 = ggplot(salario_Data_Quality_and_Operations, aes(salary_in_usd, job_category))
+grafica_dispersion6 = ggplot(salarioMachine_Learning_and_AI, aes(salary_in_usd, job_category))
+grafica_dispersion7 = ggplot(salarioCloud_and_Database, aes(salary_in_usd, job_category))
+grafica_dispersion8 = ggplot(salario_Data_Analysis, aes(salary_in_usd, job_category))
+grafica_dispersion9 = ggplot(salario_Data_Management_and_Strategy, aes(salary_in_usd, job_category))
+grafica_dispersion0 = ggplot(salario_Leadership_and_Management, aes(salary_in_usd, job_category))
+
+
+
+grafica_dispersion1 + geom_point()
+grafica_dispersion2 + geom_point()
+grafica_dispersion3 + geom_point()
+grafica_dispersion4 + geom_point()
+grafica_dispersion5 + geom_point()
+grafica_dispersion6 + geom_point()
+grafica_dispersion7 + geom_point()
+grafica_dispersion8 + geom_point()
+grafica_dispersion9 + geom_point()
+grafica_dispersion0 + geom_point()
+
+print(grafica_dispersion1)
+print(grafica_dispersion2)
+print(grafica_dispersion3)
+print(grafica_dispersion4)
+print(grafica_dispersion5)
+print(grafica_dispersion6)
+print(grafica_dispersion7)
+print(grafica_dispersion8)
+print(grafica_dispersion9)
+print(grafica_dispersion0)
