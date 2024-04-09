@@ -46,6 +46,7 @@ frecuencia_empleos <- table(datos_filtrados$job_tittle)
 table(job_title)
 table(job_category)
 table(employee_residence)
+table(work_setting)
 # Mostrar la frecuencia de cada tipo de empleo específico
 print(frecuencia_empleos[c("Data Engineer", "Data Scientist", "Data Analyst", "Machine Learning Engineer", "Applied Scientist")])
 
@@ -142,6 +143,16 @@ plot(x = 1:length(salarios_Leadership_and_Management),
 
 
 
+#####Gráfico de dispersión de todos los job_category con su salario en usd
+
+
+
+
+plot(x = 1:length(salary_in_usd),
+     salary_in_usd,
+     main = "disperisión de los salarios",
+     xlab = "Cantidad de datos",
+     ylab = "salario en dolrares")
 
 
 
@@ -152,6 +163,26 @@ plot(x = 1:length(salarios_Leadership_and_Management),
 
 
 
+#############Gráficos de torta
+
+# Contar la frecuencia de cada tipo de configuración de trabajo
+frecuencia_work_setting <- table(datos_filtrados$work_setting)
+
+# Crear el diagrama de pastel, tipo de trabajo
+pie(frecuencia_work_setting,
+    main = "Distribución de Configuraciones de Trabajo",
+    labels = paste(names(frecuencia_work_setting), "\n", frecuencia_work_setting),
+    col = rainbow(length(frecuencia_work_setting)))  # Colores del arco iris para cada sector
+
+# Tamaño de la compañía
+
+frecuencia_larges_company <- table(datos_filtrados$company_size)
+
+pie(frecuencia_larges_company,
+    main = "distribución del tamaño de la compañía",
+    labels = paste(names(frecuencia_larges_company), "\n", frecuencia_larges_company),
+    col =rainbow(length(frecuencia_larges_company))
+    )
 
 
 
@@ -183,6 +214,8 @@ print(p1)
 prop.table(Tabla)
 
 hist(salary_in_usd, col=c("#0000CD", "#FF4040", "#76EEC6", "#FFD39B", "#8EE5EE", "#7FFF00", "#EE7621", "#FFB90F"))
+
+
 
 hist(salary_in_usd, freq = FALSE)
 lines(density(salary_in_usd), col = "blue")
