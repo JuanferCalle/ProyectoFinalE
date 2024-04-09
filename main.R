@@ -49,46 +49,118 @@ table(employee_residence)
 # Mostrar la frecuencia de cada tipo de empleo específico
 print(frecuencia_empleos[c("Data Engineer", "Data Scientist", "Data Analyst", "Machine Learning Engineer", "Applied Scientist")])
 
-colores <- c("blue", "green", "red", "purple", "orange", "yellow", "cyan", "magenta", "brown", "gold")
-barplot(table(job_category), 
-        main = "Frecuencia de categoria de Trabajo",
-        xlab = "Título de Trabajo",
-        ylab = "Frecuencia",
-        col = colores,
-        las = 2)  # Rotar etiquetas en el eje x si es necesario
-# Crear el diagrama de torta
-# Crear el diagrama de torta sin las etiquetas de las categorías de trabajo
-pie(table(job_title),
-    main = "Frecuencia de Títulos de Trabajo",
-    col = rainbow(length(table(job_title))),  # Colores del arco iris para cada sector
-    labels = NA)  # No mostrar etiquetas dentro del gráfico de torta
-
-# Obtener los colores del arco iris
-colores <- rainbow(length(table(job_title)))
-
-# Crear recuadros para las categorías de trabajo
-for (i in 1:length(table(job_title))) {
-  rect(xleft = 1.2, ybottom = 1.1 - i * 0.1, xright = 1.3, ytop = 1.0 - i * 0.1, col = colores[i])
-  text(1.35, 1.05 - i * 0.1, names(table(job_title))[i], pos = 4, cex = 0.8)
-}
-
 ###Las tablas por job_category
-salario_data_engineering <- subset(datos_filtrados, job_category == "Data Engineering")
-salario_Architecture_and_Modeling <- subset(datos_filtrados, job_category == "Data Architecture and Modeling")
-salarioData_Science_and_Research <- subset(datos_filtrados, job_category == "Data Science and Research")
-salarioBI_and_Visualization <- subset(datos_filtrados, job_category == "BI and Visualization")
-salario_Data_Quality_and_Operations <- subset(datos_filtrados, job_category == " Data Quality and Operations")
-salarioMachine_Learning_and_AI <- subset(datos_filtrados, job_category == "Machine Learning and AI")
-salarioCloud_and_Database  <- subset(datos_filtrados, job_category == "Cloud and Database ")
-salario_Data_Analysis  <- subset(datos_filtrados, job_category == "Data Analysis ")
-salario_Data_Management_and_Strategy  <- subset(datos_filtrados, job_category == "Data Management and Strategy ")
-salario_Leadership_and_Management  <- subset(datos_filtrados, job_category == "Leadership and Management ")
+datos_data_engineering <- subset(datos_filtrados, job_category == "Data Engineering")
+datos_Architecture_and_Modeling <- subset(datos_filtrados, job_category == "Data Architecture and Modeling")
+datos_Data_Science_and_Research <- subset(datos_filtrados, job_category == "Data Science and Research")
+datos_BI_and_Visualization <- subset(datos_filtrados, job_category == "BI and Visualization")
+datos_Data_Quality_and_Operations <- subset(datos_filtrados, job_category == " Data Quality and Operations")
+datos_Machine_Learning_and_AI <- subset(datos_filtrados, job_category == "Machine Learning and AI")
+datos_Cloud_and_Database  <- subset(datos_filtrados, job_category == "Cloud and Database ")
+datos__Data_Analysis  <- subset(datos_filtrados, job_category == "Data Analysis ")
+datos_Data_Management_and_Strategy  <- subset(datos_filtrados, job_category == "Data Management and Strategy ")
+datos_Leadership_and_Management  <- subset(datos_filtrados, job_category == "Leadership and Management ")
 
 
 
-print(salario_data_engineering)
-print(salarioCloud_and_Database)
-print(salario_Architecture_and_Modeling)
+# Seleccionar solo los salarios
+salarios_data_engineering <- datos_filtrados$salary_in_usd[datos_filtrados$job_category == "Data Engineering"]
+salarios_Architecture_and_Modeling <- datos_filtrados$salary_in_usd[datos_filtrados$job_category == "Data Architecture and Modeling"]
+salarios_Data_Science_and_Research <- datos_filtrados$salary_in_usd[datos_filtrados$job_category == "Data Science and Research"]
+salarios_BI_and_Visualization <- datos_filtrados$salary_in_usd[datos_filtrados$job_category == "BI and Visualization"]
+salarios_Data_Quality_and_Operations <- datos_filtrados$salary_in_usd[datos_filtrados$job_category == "Data Quality and Operations"]
+salarios_Machine_Learning_and_AI <- datos_filtrados$salary_in_usd[datos_filtrados$job_category == "Machine Learning and AI"]
+salarios_Cloud_and_Database <- datos_filtrados$salary_in_usd[datos_filtrados$job_category == "Cloud and Database"]
+salarios_Data_Analysis <- datos_filtrados$salary_in_usd[datos_filtrados$job_category == "Data Analysis"]
+salarios_Data_Management_and_Strategy <- datos_filtrados$salary_in_usd[datos_filtrados$job_category == "Data Management and Strategy"]
+salarios_Leadership_and_Management <- datos_filtrados$salary_in_usd[datos_filtrados$job_category == "Leadership and Management"]
+
+
+
+
+
+# Crear un gráfico de dispersión de los salarios
+plot(x = 1:length(salarios_data_engineering), 
+     y = salarios_data_engineering,
+     main = "Salarios de Data Engineering",
+     xlab = "Data Engineering",
+     ylab = "Salario en USD")
+
+plot(x = 1:length(salarios_Architecture_and_Modeling), 
+     y = salarios_Architecture_and_Modeling,
+     main = "Salarios de Architecture and modeling",
+     xlab = "Architecture and modeling",
+     ylab = "Salario en USD")
+
+plot(x = 1:length(salarios_Data_Science_and_Research), 
+     y = salarios_Data_Science_and_Research,
+     main = "Salarios de Data science and research",
+     xlab = "Data science and research",
+     ylab = "Salario en USD")
+
+plot(x = 1:length(salarios_BI_and_Visualization), 
+     y = salarios_BI_and_Visualization,
+     main = "Salarios BI and visualization",
+     xlab = "BI and visualization",
+     ylab = "Salario en USD")
+
+plot(x = 1:length(salarios_Data_Quality_and_Operations), 
+     y = salarios_Data_Quality_and_Operations,
+     main = "Salarios de Data Quality and operations",
+     xlab = "Data quality and operations",
+     ylab = "Salario en USD")
+
+plot(x = 1:length(salarios_Machine_Learning_and_AI), 
+     y = salarios_Machine_Learning_and_AI,
+     main = "Salarios Machine learing and AI",
+     xlab = "Machine learning and AI",
+     ylab = "Salario en USD")
+
+plot(x = 1:length(salarios_Cloud_and_Database), 
+     y = salarios_Cloud_and_Database,
+     main = "Salarios de Cloud and database",
+     xlab = "Cloud and data base",
+     ylab = "Salario en USD")
+
+plot(x = 1:length(salarios_Data_Analysis), 
+     y = salarios_Data_Analysis,
+     main = "Salarios de Data analysis",
+     xlab = "Data analysis",
+     ylab = "Salario en USD")
+
+plot(x = 1:length(salarios_Data_Management_and_Strategy), 
+     y = salarios_Data_Management_and_Strategy,
+     main = "Salarios de Data management and strategy",
+     xlab = "Data management and strategy",
+     ylab = "Salario en USD")
+
+plot(x = 1:length(salarios_Leadership_and_Management), 
+     y = salarios_Leadership_and_Management,
+     main = "Salarios de Leadership and management",
+     xlab = "Leadership and management",
+     ylab = "Salario en USD")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 # Crear diagramas de cajas y alambres para cada categoría de trabajo y su salario correspondiente
@@ -106,38 +178,18 @@ print(p1)
 
 
 
-# Diagrama de dispersión
-grafica_dispersion1 = ggplot(salario_data_engineering, aes(salary_in_usd, job_category))
-grafica_dispersion2 = ggplot(salario_Architecture_and_Modeling, aes(salary_in_usd, job_category))
-grafica_dispersion3 = ggplot(salarioData_Science_and_Research, aes(salary_in_usd, job_category))
-grafica_dispersion4 = ggplot(salarioBI_and_Visualization, aes(salary_in_usd, job_category))
-grafica_dispersion5 = ggplot(salario_Data_Quality_and_Operations, aes(salary_in_usd, job_category))
-grafica_dispersion6 = ggplot(salarioMachine_Learning_and_AI, aes(salary_in_usd, job_category))
-grafica_dispersion7 = ggplot(salarioCloud_and_Database, aes(salary_in_usd, job_category))
-grafica_dispersion8 = ggplot(salario_Data_Analysis, aes(salary_in_usd, job_category))
-grafica_dispersion9 = ggplot(salario_Data_Management_and_Strategy, aes(salary_in_usd, job_category))
-grafica_dispersion0 = ggplot(salario_Leadership_and_Management, aes(salary_in_usd, job_category))
 
 
+prop.table(Tabla)
 
-grafica_dispersion1 + geom_point()
-grafica_dispersion2 + geom_point()
-grafica_dispersion3 + geom_point()
-grafica_dispersion4 + geom_point()
-grafica_dispersion5 + geom_point()
-grafica_dispersion6 + geom_point()
-grafica_dispersion7 + geom_point()
-grafica_dispersion8 + geom_point()
-grafica_dispersion9 + geom_point()
-grafica_dispersion0 + geom_point()
+hist(salary_in_usd, col=c("#0000CD", "#FF4040", "#76EEC6", "#FFD39B", "#8EE5EE", "#7FFF00", "#EE7621", "#FFB90F"))
 
-print(grafica_dispersion1)
-print(grafica_dispersion2)
-print(grafica_dispersion3)
-print(grafica_dispersion4)
-print(grafica_dispersion5)
-print(grafica_dispersion6)
-print(grafica_dispersion7)
-print(grafica_dispersion8)
-print(grafica_dispersion9)
-print(grafica_dispersion0)
+hist(salary_in_usd, freq = FALSE)
+lines(density(salary_in_usd), col = "blue")
+
+summary(salary_in_usd)
+
+summarytools::descr(salary_in_usd)
+
+boxplot(salary_in_usd)
+
