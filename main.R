@@ -206,6 +206,8 @@ p1 <- ggplot(data = datos_filtrados, aes(x = job_category, y = salary_in_usd)) +
 # Mostrar los diagramas de cajas y alambres
 print(p1)
 
+##Caja de alambre global
+boxplot(salary_in_usd)
 
 
 
@@ -224,5 +226,5 @@ summary(salary_in_usd)
 
 summarytools::descr(salary_in_usd)
 
-boxplot(salary_in_usd)
+
 
