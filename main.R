@@ -29,7 +29,7 @@ print(columnas_con_faltantes)
 
 print(datos_filtrados) 
 
-attach(datos_filtrados)
+
 names(datos_filtrados)
 
 # Contar la frecuencia de cada tipo de empleo
@@ -47,6 +47,14 @@ table(job_title)
 table(job_category)
 table(employee_residence)
 table(work_setting)
+
+# Crear una nueva columna llamada "salary_in_usd_thousands" con los valores de "salary_in_usd" divididos por 1000
+datos_filtrados$salary_in_usd_thousands <- datos_filtrados$salary_in_usd / 1000
+
+# Mostrar las primeras filas del conjunto de datos para verificar los cambios
+
+
+
 # Mostrar la frecuencia de cada tipo de empleo específico
 print(frecuencia_empleos[c("Data Engineer", "Data Scientist", "Data Analyst", "Machine Learning Engineer", "Applied Scientist")])
 
@@ -65,97 +73,58 @@ datos_Leadership_and_Management  <- subset(datos_filtrados, job_category == "Lea
 
 
 # Seleccionar solo los salarios
-salarios_data_engineering <- datos_filtrados$salary_in_usd[datos_filtrados$job_category == "Data Engineering"]
-salarios_Architecture_and_Modeling <- datos_filtrados$salary_in_usd[datos_filtrados$job_category == "Data Architecture and Modeling"]
-salarios_Data_Science_and_Research <- datos_filtrados$salary_in_usd[datos_filtrados$job_category == "Data Science and Research"]
-salarios_BI_and_Visualization <- datos_filtrados$salary_in_usd[datos_filtrados$job_category == "BI and Visualization"]
-salarios_Data_Quality_and_Operations <- datos_filtrados$salary_in_usd[datos_filtrados$job_category == "Data Quality and Operations"]
-salarios_Machine_Learning_and_AI <- datos_filtrados$salary_in_usd[datos_filtrados$job_category == "Machine Learning and AI"]
-salarios_Cloud_and_Database <- datos_filtrados$salary_in_usd[datos_filtrados$job_category == "Cloud and Database"]
-salarios_Data_Analysis <- datos_filtrados$salary_in_usd[datos_filtrados$job_category == "Data Analysis"]
-salarios_Data_Management_and_Strategy <- datos_filtrados$salary_in_usd[datos_filtrados$job_category == "Data Management and Strategy"]
-salarios_Leadership_and_Management <- datos_filtrados$salary_in_usd[datos_filtrados$job_category == "Leadership and Management"]
+salarios_data_engineering <- datos_filtrados$salary_in_usd_thousands[datos_filtrados$job_category == "Data Engineering"]
+salarios_Architecture_and_Modeling <- datos_filtrados$salary_in_usd_thousands[datos_filtrados$job_category == "Data Architecture and Modeling"]
+salarios_Data_Science_and_Research <- datos_filtrados$salary_in_usd_thousands[datos_filtrados$job_category == "Data Science and Research"]
+salarios_BI_and_Visualization <- datos_filtrados$salary_in_usd_thousands[datos_filtrados$job_category == "BI and Visualization"]
+salarios_Data_Quality_and_Operations <- datos_filtrados$salary_in_usd_thousands[datos_filtrados$job_category == "Data Quality and Operations"]
+salarios_Machine_Learning_and_AI <- datos_filtrados$salary_in_usd_thousands[datos_filtrados$job_category == "Machine Learning and AI"]
+salarios_Cloud_and_Database <- datos_filtrados$salary_in_usd_thousands[datos_filtrados$job_category == "Cloud and Database"]
+salarios_Data_Analysis <- datos_filtrados$salary_in_usd_thousands[datos_filtrados$job_category == "Data Analysis"]
+salarios_Data_Management_and_Strategy <- datos_filtrados$salary_in_usd_thousands[datos_filtrados$job_category == "Data Management and Strategy"]
+salarios_Leadership_and_Management <- datos_filtrados$salary_in_usd_thousands[datos_filtrados$job_category == "Leadership and Management"]
 
 
 
 
 
-# Crear un gráfico de dispersión de los salarios
-plot(x = 1:length(salarios_data_engineering), 
-     y = salarios_data_engineering,
-     main = "Salarios de Data Engineering",
-     xlab = "Data Engineering",
-     ylab = "Salario en USD")
-
-plot(x = 1:length(salarios_Architecture_and_Modeling), 
-     y = salarios_Architecture_and_Modeling,
-     main = "Salarios de Architecture and modeling",
-     xlab = "Architecture and modeling",
-     ylab = "Salario en USD")
-
-plot(x = 1:length(salarios_Data_Science_and_Research), 
-     y = salarios_Data_Science_and_Research,
-     main = "Salarios de Data science and research",
-     xlab = "Data science and research",
-     ylab = "Salario en USD")
-
-plot(x = 1:length(salarios_BI_and_Visualization), 
-     y = salarios_BI_and_Visualization,
-     main = "Salarios BI and visualization",
-     xlab = "BI and visualization",
-     ylab = "Salario en USD")
-
-plot(x = 1:length(salarios_Data_Quality_and_Operations), 
-     y = salarios_Data_Quality_and_Operations,
-     main = "Salarios de Data Quality and operations",
-     xlab = "Data quality and operations",
-     ylab = "Salario en USD")
-
-plot(x = 1:length(salarios_Machine_Learning_and_AI), 
-     y = salarios_Machine_Learning_and_AI,
-     main = "Salarios Machine learing and AI",
-     xlab = "Machine learning and AI",
-     ylab = "Salario en USD")
-
-plot(x = 1:length(salarios_Cloud_and_Database), 
-     y = salarios_Cloud_and_Database,
-     main = "Salarios de Cloud and database",
-     xlab = "Cloud and data base",
-     ylab = "Salario en USD")
-
-plot(x = 1:length(salarios_Data_Analysis), 
-     y = salarios_Data_Analysis,
-     main = "Salarios de Data analysis",
-     xlab = "Data analysis",
-     ylab = "Salario en USD")
-
-plot(x = 1:length(salarios_Data_Management_and_Strategy), 
-     y = salarios_Data_Management_and_Strategy,
-     main = "Salarios de Data management and strategy",
-     xlab = "Data management and strategy",
-     ylab = "Salario en USD")
-
-plot(x = 1:length(salarios_Leadership_and_Management), 
-     y = salarios_Leadership_and_Management,
-     main = "Salarios de Leadership and management",
-     xlab = "Leadership and management",
-     ylab = "Salario en USD")
 
 
-
-#####Gráfico de dispersión de todos los job_category con su salario en usd
-
+#####Histogramas del salario
 
 
-
-plot(x = 1:length(salary_in_usd),
-     salary_in_usd,
-     main = "disperisión de los salarios",
-     xlab = "Cantidad de datos",
-     ylab = "salario en dolrares")
+# Crear histogramas para cada categoría de trabajo
 
 
+hist(salarios_data_engineering, main = "Salarios en Data Engineering", xlab = "Salario en USD", col = "skyblue", freq = FALSE)
+lines(density(salarios_data_engineering), col = "red", lwd = 2)
 
+hist(salarios_Architecture_and_Modeling, main = "Salarios en Data Architecture and Modeling", xlab = "Salario en USD", col = "skyblue", freq = FALSE)
+lines(density(salarios_Architecture_and_Modeling), col = "red", lwd = 2)
+
+hist(salarios_Data_Science_and_Research, main = "Salarios en Data Science and Research", xlab = "Salario en USD", col = "skyblue", freq = FALSE)
+lines(density(salarios_Data_Science_and_Research), col = "red", lwd = 2)
+
+hist(salarios_BI_and_Visualization, main = "Salarios en Data Engineering", xlab = "Salario en USD", col = "skyblue", freq = FALSE) 
+lines(density(salarios_BI_and_Visualization), col = "red", lwd = 2)
+
+hist(salarios_Data_Quality_and_Operations, main = "Salarios en Data Engineering", xlab = "Salario en USD", col = "skyblue", freq = FALSE)
+lines(density(salarios_Data_Quality_and_Operations), col = "red", lwd = 2)
+
+hist(salarios_Machine_Learning_and_AI, main = "Salarios en Data Engineering", xlab = "Salario en USD", col = "skyblue", freq = FALSE)
+lines(density(salarios_Machine_Learning_and_AI), col = "red", lwd = 2)
+
+hist(salarios_Cloud_and_Database, main = "Salarios en Data Engineering", xlab = "Salario en USD", col = "skyblue", freq = FALSE)
+lines(density(salarios_Cloud_and_Database), col = "red", lwd = 2)
+
+hist(salarios_Data_Analysis, main = "Salarios en Data Engineering", xlab = "Salario en USD", col = "skyblue", freq = FALSE)
+lines(density(salarios_Data_Analysis), col = "red", lwd = 2)
+
+hist(salarios_Data_Management_and_Strategy, main = "Salarios en Data Engineering", xlab = "Salario en USD", col = "skyblue", freq = FALSE)
+lines(density(salarios_Data_Management_and_Strategy), col = "red", lwd = 2)
+
+hist(salarios_Leadership_and_Management, main = "Salarios en Data Engineering", xlab = "Salario en USD", col = "skyblue", freq = FALSE)
+lines(density(salarios_Leadership_and_Management), col = "red", lwd = 2)
 
 
 
@@ -168,21 +137,27 @@ plot(x = 1:length(salary_in_usd),
 # Contar la frecuencia de cada tipo de configuración de trabajo
 frecuencia_work_setting <- table(datos_filtrados$work_setting)
 
-# Crear el diagrama de pastel, tipo de trabajo
+
+# Calcular porcentajes
+porcentajes <- round(prop.table(frecuencia_work_setting) * 100, 2)
+
+# Crear el diagrama de pastel
 pie(frecuencia_work_setting,
     main = "Distribución de Configuraciones de Trabajo",
-    labels = paste(names(frecuencia_work_setting), "\n", frecuencia_work_setting),
+    labels = paste(names(porcentajes), "\n", porcentajes, "%"),
     col = rainbow(length(frecuencia_work_setting)))  # Colores del arco iris para cada sector
+
 
 # Tamaño de la compañía
 
-frecuencia_larges_company <- table(datos_filtrados$company_size)
+# Calcular porcentajes
+porcentajes_larges_company <- round(prop.table(frecuencia_larges_company) * 100, 2)
 
+# Crear el diagrama de pastel
 pie(frecuencia_larges_company,
-    main = "distribución del tamaño de la compañía",
-    labels = paste(names(frecuencia_larges_company), "\n", frecuencia_larges_company),
-    col =rainbow(length(frecuencia_larges_company))
-    )
+    main = "Distribución del Tamaño de la Compañía",
+    labels = paste(names(porcentajes_larges_company), "\n", porcentajes_larges_company, "%"),
+    col = rainbow(length(frecuencia_larges_company)))  # Colores del arco iris para cada sector
 
 
 
@@ -195,34 +170,29 @@ pie(frecuencia_larges_company,
 
 
 # Crear diagramas de cajas y alambres para cada categoría de trabajo y su salario correspondiente
-p1 <- ggplot(data = datos_filtrados, aes(x = job_category, y = salary_in_usd)) +
+porcentajes_larges_company <- round(prop.table(frecuencia_larges_company) * 100, 2)
+
+
+# Crear un gráfico de caja para los salarios por categoría de trabajo
+p1 <- ggplot(data = datos_filtrados, aes(x = job_category, y = salary_in_usd_thousands)) +
   geom_boxplot(fill = "skyblue", color = "black") +
   labs(title = "Salarios por Categoría de Trabajo",
        x = "Categoría de Trabajo",
-       y = "Salario en USD") +
+       y = "Salario en miles de USD") +
   theme_minimal() +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))  # Rotar etiquetas del eje x si es necesario
 
-# Mostrar los diagramas de cajas y alambres
+# Mostrar el gráfico de caja
 print(p1)
 
+
 ##Caja de alambre global
+
 boxplot(salary_in_usd)
 
 
 
 
-
-prop.table(Tabla)
-
-hist(salary_in_usd, col=c("#0000CD", "#FF4040", "#76EEC6", "#FFD39B", "#8EE5EE", "#7FFF00", "#EE7621", "#FFB90F"))
-
-
-
-hist(salary_in_usd, freq = FALSE)
-lines(density(salary_in_usd), col = "blue")
-
-summary(salary_in_usd)
 
 summarytools::descr(salary_in_usd)
 
