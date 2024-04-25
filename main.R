@@ -37,12 +37,13 @@ frecuencia_empleos <- table(datos_filtrados$job_tittle)
 
 # Contar la cantidad de datos en la columna "job_tittle"
 cantidad_datos <- nrow(datos_filtrados)
+
 print(cantidad_datos)
 
 # Contar la frecuencia de cada tipo de empleo
 frecuencia_empleos <- table(datos_filtrados$job_tittle)
 
-
+attach(datos_filtrados)
 table(job_title)
 table(job_category)
 table(employee_residence)
@@ -50,6 +51,7 @@ table(work_setting)
 
 # Crear una nueva columna llamada "salary_in_usd_thousands" con los valores de "salary_in_usd" divididos por 1000
 datos_filtrados$salary_in_usd_thousands <- datos_filtrados$salary_in_usd / 1000
+
 
 # Mostrar las primeras filas del conjunto de datos para verificar los cambios
 
@@ -188,13 +190,13 @@ print(p1)
 
 ##Caja de alambre global
 
-boxplot(salary_in_usd)
+boxplot(salary_in_usd_thousands)
 
 
 
 
 
-summarytools::descr(salary_in_usd)
+summarytools::descr(salary_in_usd_thousands)
 
 
 
